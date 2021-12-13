@@ -2,22 +2,16 @@ package com.example.clu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,15 +33,12 @@ public class MainActivity extends AppCompatActivity {
         String password = editText.getText().toString();
         editText = (EditText) findViewById(R.id.usernameEditText);
         String username = editText.getText().toString();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try  {
-                    //Your code goes here
-                    sendInfo(username, password);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        Thread thread = new Thread(() -> {
+            try  {
+                //Your code goes here
+                sendInfo(username, password);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
 
@@ -60,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendInfo(String user, String pass) {
         String text="";
-        BufferedReader reader=null;
+        BufferedReader reader;
         String data = "user=" + user + "&pass=" + pass;
         try
         {
@@ -81,20 +72,14 @@ public class MainActivity extends AppCompatActivity {
 
             while ((line = reader.readLine()) != null) {
                 //Log.d("STR",line);
-                sb.append(line + "\n");
+                sb.append(line).append("\n");
             }
             text=sb.toString();
-        }
-        catch(MalformedURLException e)
+        } catch(Exception e)
         {
             System.out.println(e+""+e.getMessage());
-        }
-        catch(IOException e)
-        {
-            System.out.println(e+""+e.getMessage());
-        }
-        finally {
-
+        } finally {
+            System.out.println("End of session");
         }
         // Show response on activity
         System.out.println(text);
