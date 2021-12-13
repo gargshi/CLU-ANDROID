@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Called when the user taps the Send button
      */
-    public void sendMessage(View view){
+    public void sendMessage(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.passwordEditText);
@@ -36,20 +36,15 @@ public class MainActivity extends AppCompatActivity {
         Thread thread = new Thread(() -> {
             try  {
                 //Your code goes here
-                sendInfo(username, password);
+                sendInfo(username, password, intent);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-
         thread.start();
-
-        intent.putExtra(EXTRA_MESSAGE, username + " - " + password);
-        startActivity(intent);
-
     }
 
-    public void sendInfo(String user, String pass) {
+    public void sendInfo(String user, String pass, Intent intent) {
         String text="";
         BufferedReader reader;
         String data = "user=" + user + "&pass=" + pass;
@@ -71,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                //Log.d("STR",line);
                 sb.append(line).append("\n");
             }
             text=sb.toString();
@@ -84,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         // Show response on activity
         System.out.println(text);
 
+        intent.putExtra(EXTRA_MESSAGE, "Received output: "+user + " - " + pass);
+        startActivity(intent);
     }
 
 }
