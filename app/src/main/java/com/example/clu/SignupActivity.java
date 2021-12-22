@@ -1,11 +1,11 @@
 package com.example.clu;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,51 +13,56 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
-
-    public static final String EXTRA_MESSAGE = "com.example.clu.MESSAGE";
+public class SignupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_signup2);
     }
 
-    /**
-     * Called when the user taps the Send button
-     */
-    public void sendMessage(View view) {
-        // Do something in response to button
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.passwordEditText);
-        String password = editText.getText().toString();
-        editText = (EditText) findViewById(R.id.usernameEditText);
-        String username = editText.getText().toString();
-        Thread thread = new Thread(() -> {
-            try  {
-                //Your code goes here
-                sendInfo(username, password, intent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        thread.start();
-    }
     public void switchScreen(View view)
     {
-        Intent intent = new Intent(this, SignupActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         //intent.putExtra(EXTRA_MESSAGE, "Received output: "+ user + " - " + pass);
         startActivity(intent);
     }
 
-    public void sendInfo(String user, String pass, Intent intent) {
+    public void signup(View view)
+    {
+        EditText e1=(EditText) findViewById(R.id.susername);
+        String user=e1.getText().toString();
+        EditText e2=(EditText) findViewById(R.id.spassword);
+        String pass=e2.getText().toString();
+        EditText e3=(EditText) findViewById(R.id.srepassword);
+        String repass=e3.getText().toString();
+        if(pass.equals(repass))
+        {
+            Thread thread = new Thread(() -> {
+                try  {
+                    //Your code goes here
+                    sendInfo(user, pass);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            thread.start();
+        }
+        else
+        {
+            System.out.println("Password not match");
+        }
+    }
+
+    public void sendInfo(String user,String pass)//Intent intent)
+    {
         String text="";
         BufferedReader reader;
         String data = "user=" + user + "&pass=" + pass;
         try
         {
             System.out.println(data);
-            URL url = new URL("https://heterogeneous-snow.000webhostapp.com/username-check.php");
+            URL url = new URL("https://heterogeneous-snow.000webhostapp.com/insert_user.php");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
@@ -84,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
         // Show response on activity
         System.out.println(text);
 
-        intent.putExtra(EXTRA_MESSAGE, "Received output: "+user + " - " + pass);
-        startActivity(intent);
-    }
+        //intent.putExtra(EXTRA_MESSAGE, "Received output: "+user + " - " + pass);
+        //startActivity(intent);
 
+    }
 }

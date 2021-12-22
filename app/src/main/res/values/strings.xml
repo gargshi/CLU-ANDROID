@@ -2,4 +2,20 @@
     <string name="app_name">CLU</string>
     <string name="edit_message">Enter a message</string>
     <string name="btn_text">Send</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="enter_username">ENTER USERNAME</string>
+    <string name="button">SIGNUP</string>
+    <string name="enter_username1">Enter Username</string>
+    <string name="signup">Signup</string>
+    <string name="back_to_login">Back To Login</string>
+    <string name="password">Password</string>
+    <string name="re_enter_password">Re-enter Password</string>
 </resources>
