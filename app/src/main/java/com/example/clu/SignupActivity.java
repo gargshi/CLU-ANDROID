@@ -1,11 +1,15 @@
 package com.example.clu;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -19,6 +23,16 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup2);
+    }
+
+    public void showDialog(String msg)
+    {
+        AlertDialog.Builder ad=new AlertDialog.Builder(this);
+        //ad.create();
+        ad.setTitle("Alert!");
+        ad.setMessage(msg).setCancelable(false);
+        ad.setPositiveButton("OK", (dialog, id) -> finish());
+        ad.show();
     }
 
     public void switchScreen(View view)
@@ -48,9 +62,12 @@ public class SignupActivity extends AppCompatActivity {
             });
             thread.start();
         }
-        else
-        {
+        else {
             System.out.println("Password not match");
+//            Toast t=Toast.makeText(getApplicationContext(), "SIGNUP-ERROR, Kindly check inputs", Toast.LENGTH_SHORT);
+//            t.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+//            t.show();
+            showDialog("Passwords are not equal");
         }
     }
 
