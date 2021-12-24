@@ -1,10 +1,12 @@
 package com.example.clu;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
@@ -83,9 +85,29 @@ public class MainActivity extends AppCompatActivity {
         }
         // Show response on activity
         System.out.println(text);
+        if(text.contains("user found"))
+        {
+            runOnUiThread(() -> showDialog("LOGIN SUCCESS"));
+            intent.putExtra(EXTRA_MESSAGE, " Welcome "+user+"!");
+            startActivity(intent);
+        }
+        else
+        {
+            runOnUiThread(() -> showDialog("LOGIN FAILED. Check your credentials"));
+        }
 
-        intent.putExtra(EXTRA_MESSAGE, "Received output: "+user + " - " + pass);
-        startActivity(intent);
     }
-
+    public void showDialog(String msg)
+    {
+        AlertDialog.Builder ad=new AlertDialog.Builder(this);
+        ad.create();
+        ad.setTitle("Alert!");
+        ad.setMessage(msg).setCancelable(false);
+        ad.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        ad.show();
+    }
 }

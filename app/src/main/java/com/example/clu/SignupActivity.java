@@ -3,6 +3,7 @@ package com.example.clu;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class SignupActivity extends AppCompatActivity {
+    static String re=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +30,14 @@ public class SignupActivity extends AppCompatActivity {
     public void showDialog(String msg)
     {
         AlertDialog.Builder ad=new AlertDialog.Builder(this);
-        //ad.create();
+        ad.create();
         ad.setTitle("Alert!");
         ad.setMessage(msg).setCancelable(false);
-        ad.setPositiveButton("OK", (dialog, id) -> finish());
+        ad.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
         ad.show();
     }
 
@@ -61,14 +67,13 @@ public class SignupActivity extends AppCompatActivity {
                 }
             });
             thread.start();
+
         }
         else {
             System.out.println("Password not match");
-//            Toast t=Toast.makeText(getApplicationContext(), "SIGNUP-ERROR, Kindly check inputs", Toast.LENGTH_SHORT);
-//            t.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-//            t.show();
             showDialog("Passwords are not equal");
         }
+        System.out.println("re :"+re);
     }
 
     public void sendInfo(String user,String pass)//Intent intent)
@@ -105,7 +110,17 @@ public class SignupActivity extends AppCompatActivity {
         }
         // Show response on activity
         System.out.println(text);
-
+        if(text.contains("This user already exists"))
+        {
+            runOnUiThread(() -> showDialog("This user already exists in my database."));
+        }
+        else if(text.contains("New record created successfully"))
+        {
+            System.out.println("user added");
+            runOnUiThread(() -> showDialog("user added"));
+            startActivity(new Intent(this, MainActivity.class));
+        }
+        SignupActivity.re= text;
         //intent.putExtra(EXTRA_MESSAGE, "Received output: "+user + " - " + pass);
         //startActivity(intent);
 

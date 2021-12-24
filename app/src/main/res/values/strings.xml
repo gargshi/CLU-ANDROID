@@ -18,4 +18,5 @@
     <string name="back_to_login">Back To Login</string>
     <string name="password">Password</string>
     <string name="re_enter_password">Re-enter Password</string>
+    <string name="logout">LOGOUT</string>
 </resources>
