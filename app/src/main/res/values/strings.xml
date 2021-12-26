@@ -8,7 +8,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="enter_username">ENTER USERNAME</string>
@@ -20,4 +19,28 @@
     <string name="re_enter_password">Re-enter Password</string>
     <string name="logout">LOGOUT</string>
     <string name="banner">Banner</string>
+    <string name="talk_with_clu">Talk with CLU</string>
+    <string name="password_manager">Password manager</string>
+    <string name="almanac">Almanac</string>
+    <string name="music_player">Music Player</string>
+    <string name="device_info">Device Info</string>
+    <string name="settings">SETTINGS</string>
+    <string name="back">BACK</string>
+    <string name="os_version">OS Version</string>
+    <string name="device">Device</string>
+    <string name="os_api_level">OS API LEVEL</string>
+    <string name="textview">TextView</string>
+    <string name="release">Release</string>
+    <string name="brand">Brand</string>
+    <string name="display">Display</string>
+    <string name="cpu_abi">CPU ABI</string>
+    <string name="cpu_abi_2">CPU_ABI_2</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="hardware">Hardware</string>
+    <string name="build_id">Build ID</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="serial">Serial</string>
+    <string name="host">HOST</string>
+    <string name="user">User</string>
+    <string name="model_and_product">Model and Product    </string>
 </resources>

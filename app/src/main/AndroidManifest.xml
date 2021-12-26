@@ -6,16 +6,20 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CLU"
-        android:fullBackupContent="true">
+        android:theme="@style/Theme.CLU">
+        <activity
+            android:name=".dev_info"
+            android:exported="true"
+            android:parentActivityName=".DisplayMessageActivity" />
         <activity
             android:name=".SignupActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DisplayMessageActivity"
             android:exported="true"
@@ -25,7 +29,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
