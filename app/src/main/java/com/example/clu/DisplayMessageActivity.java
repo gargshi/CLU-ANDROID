@@ -28,6 +28,12 @@ public class DisplayMessageActivity extends AppCompatActivity {
         startActivity(new Intent(this, dev_info.class));
 
     }
+    public void view_settings(View v)
+    {
+        System.out.println("Settings");
+        startActivity(new Intent(this, Settings.class));
+
+    }
     public void logout(View v)
     {
         //Intent i=new Intent(this, MainActivity.class);

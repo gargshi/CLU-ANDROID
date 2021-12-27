@@ -40,18 +40,19 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/design_default_color_error"
         android:text="@string/almanac"
-        app:layout_constraintBottom_toTopOf="@+id/button12"
+        app:layout_constraintBottom_toTopOf="@+id/settings_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button8" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/settings_btn"
         android:layout_width="116dp"
         android:layout_height="106dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="328dp"
         android:backgroundTint="@color/design_default_color_error"
+        android:onClick="view_settings"
         android:text="@string/settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

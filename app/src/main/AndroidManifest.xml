@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CLU">
         <activity
+            android:name=".Settings"
+            android:exported="true"
+            android:parentActivityName=".DisplayMessageActivity"/>
+        <activity
             android:name=".dev_info"
             android:exported="true"
             android:parentActivityName=".DisplayMessageActivity" />
@@ -29,6 +33,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

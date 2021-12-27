@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/CLU/app/src/main/res/layout/activity_dev_info.xml" value="0.34402332361516036" />
-        <entry key="..\:/AndroidStudioProjects/CLU/app/src/main/res/layout/activity_display_message.xml" value="0.4" />
+        <entry key="..\:/AndroidStudioProjects/CLU/app/src/main/res/layout/activity_display_message.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/CLU/app/src/main/res/layout/activity_login.xml" value="0.18671875" />
         <entry key="..\:/AndroidStudioProjects/CLU/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/CLU/app/src/main/res/layout/activity_settings.xml" value="0.31441543700340524" />
         <entry key="..\:/AndroidStudioProjects/CLU/app/src/main/res/layout/activity_signup2.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/CLU/app/src/main/res/layout/fragment_first.xml" value="0.152" />
       </map>
