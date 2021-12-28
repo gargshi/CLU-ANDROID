@@ -35,7 +35,8 @@
                 android:height="48dp"
                 android:showText="true"
                 android:splitTrack="false"
-                tools:checked="false" />
+                tools:checked="false"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
         </TableRow>
 
         <TableRow

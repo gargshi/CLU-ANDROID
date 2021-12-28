@@ -1,13 +1,16 @@
 package com.example.clu;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -18,11 +21,33 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.clu.MESSAGE";
+    public Intent intent=null;
+    SharedPreferences sp= null;
+    SharedPreferences.Editor e1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        sp=getSharedPreferences("PREFLIST", Context.MODE_PRIVATE);
+        e1=sp.edit();
+        Boolean res=sp.getBoolean("Dark_Mode", true);
+        String u=sp.getString("USER_LOGGED_IN","");
+        if(!u.isEmpty())
+        {
+            intent.putExtra(EXTRA_MESSAGE, " Welcome "+u+"!");
+            startActivity(intent);
+        }
+        System.out.println(sp.getAll());
+        if (res)
+        {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else
+        {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     /**
@@ -30,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void sendMessage(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+
         EditText editText = (EditText) findViewById(R.id.passwordEditText);
         String password = editText.getText().toString();
         editText = (EditText) findViewById(R.id.usernameEditText);
@@ -38,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         Thread thread = new Thread(() -> {
             try  {
                 //Your code goes here
-                sendInfo(username, password, intent);
+                sendInfo(username, password, intent, e1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -52,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void sendInfo(String user, String pass, Intent intent) {
+    public void sendInfo(String user, String pass, Intent intent,SharedPreferences.Editor e1) {
         String text="";
         BufferedReader reader;
         String data = "user=" + user + "&pass=" + pass;
@@ -87,8 +112,9 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(text);
         if(text.contains("user found"))
         {
-            runOnUiThread(() -> showDialog("LOGIN SUCCESS"));
-            intent.putExtra(EXTRA_MESSAGE, " Welcome "+user+"!");
+            intent = new Intent(this, DisplayMessageActivity.class);
+            intent.putExtra(EXTRA_MESSAGE, user);
+            e1.putString("USER_LOGGED_IN",user).commit();
             startActivity(intent);
         }
         else
